@@ -1,0 +1,27 @@
+@if(pageLoading){
+<div class="card flex flex-row justify-center">
+  <p-progress-spinner
+    ariaLabel="loading"
+    strokeWidth="2"
+    [style]="{ width: '30px', height: '30px' }"
+  />
+  Loading
+</div>
+} @else if(!pageLoading){
+<p class="logo">Studio</p>
+<p class="sub-heading">Search. Find. Be inspired.</p>
+<div class="searchbar-div card flex flex-col md:flex-row gap-4 mb-4">
+  <app-search-bar
+    [inputsConfig]="searchInputs"
+    (search)="search($event)"
+  ></app-search-bar>
+</div>
+
+<div class="col-sm-12">
+  <div class="api-grid">
+    <div *ngFor="let post of allPosts" class="box">
+      <app-image-card [post]="post" />
+    </div>
+  </div>
+</div>
+}

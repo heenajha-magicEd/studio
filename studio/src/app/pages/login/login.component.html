@@ -1,0 +1,114 @@
+<div class="container" id="container">
+  <div class="form-container sign-up-container">
+    <form [formGroup]="signUpForm" (ngSubmit)="onSignUpSubmit()">
+      <h1>Create Account</h1>
+      <div class="social-container">
+        <a href="#" class="social"
+          ><i class="pi pi-twitter" style="font-size: 1rem"></i
+        ></a>
+        <a href="#" class="social"
+          ><i class="pi pi-facebook" style="font-size: 1rem"></i
+        ></a>
+        <a href="#" class="social"
+          ><i class="pi pi-linkedin" style="font-size: 1rem"></i
+        ></a>
+        <a href="#" class="social"
+          ><i class="pi pi-instagram" style="font-size: 1rem"></i
+        ></a>
+      </div>
+      <span>or use your email for registration</span>
+      <input
+        pInputText
+        id="username"
+        placeholder="Username"
+        formControlName="userName"
+        type="text"
+        pSize="small"
+      />
+      <input
+        pInputText
+        id="email"
+        placeholder="email"
+        formControlName="email"
+        type="email"
+        pSize="small"
+      />
+      <input
+        pInputText
+        id="password"
+        placeholder="password"
+        formControlName="password"
+        type="password"
+        pSize="small"
+      />
+      <button class="mt-2">Sign Up</button>
+    </form>
+  </div>
+
+  <!-- Sign-in Form -->
+  <div class="form-container sign-in-container">
+    <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
+      <h1>Sign in</h1>
+      <div class="social-container">
+        <a href="#" class="social"
+          ><i class="pi pi-twitter" style="font-size: 1rem"></i
+        ></a>
+        <a href="#" class="social"
+          ><i class="pi pi-facebook" style="font-size: 1rem"></i
+        ></a>
+        <a href="#" class="social"
+          ><i class="pi pi-linkedin" style="font-size: 1rem"></i
+        ></a>
+        <a href="#" class="social"
+          ><i class="pi pi-instagram" style="font-size: 1rem"></i
+        ></a>
+      </div>
+      <span>or use your account</span>
+      <input
+        pInputText
+        id="loginEmail"
+        placeholder="email"
+        formControlName="loginEmail"
+        type="email"
+        pSize="small"
+      />
+      <input
+        pInputText
+        id="loginPassword"
+        placeholder="password"
+        formControlName="loginPassword"
+        type="password"
+        pSize="small"
+      />
+      <a href="#">Forgot your password?</a>
+      <button>Sign In</button>
+    </form>
+  </div>
+
+  <!-- Overlay container for design -->
+  <div class="overlay-container">
+    <div class="overlay">
+      <img
+        style="width: 100%"
+        src="https://images.unsplash.com/photo-1729274642275-c5abcb52183d?ixid=M3w3MzUxNDF8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NDQxOTk0MDd8&ixlib=rb-4.0.3"
+      />
+      <!-- https://images.unsplash.com/photo-1735615479490-237b941e996a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MzUxNDF8MHwxfGFsbHwzfHx8fHx8fHwxNzQ0MzQ1NTA3fA&ixlib=rb-4.0.3&q=80&w=1080 -->
+      <!-- https://images.unsplash.com/photo-1509114397022-ed747cca3f65?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D -->
+      <!--  -->
+      <div class="overlay-panel overlay-left">
+        <h1>Welcome Back!</h1>
+        <p>To keep connected with us please login with your personal info</p>
+        <button class="ghost" id="signIn" (click)="viewLoginForm()">
+          Sign In
+        </button>
+      </div>
+      <div class="overlay-panel overlay-right">
+        <h1>Hello, Friend!</h1>
+        <p>Enter your personal details and start journey with us</p>
+        <button class="ghost" id="signUp" (click)="viewSignUpForm()">
+          Sign Up
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

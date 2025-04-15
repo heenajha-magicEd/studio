@@ -1,0 +1,41 @@
+<p-card class="movie-card mt-2" [header]="movie.Title" [subheader]="movie.Year">
+  <div class="movie-content">
+    <div class="movie-image">
+      <img [src]="movie.Poster" alt="Movie Poster" />
+      <p-button
+        label="Add Review"
+        icon="pi pi-star"
+        styleClass="add-review-btn"
+        [style]="{ width: '100%', 'margin-top': '10px' }"
+        severity="info"
+      ></p-button>
+    </div>
+    <div class="movie-details">
+      <p><strong>Genre: </strong> {{ movie.Genre }}</p>
+      <p><strong>Director: </strong> {{ movie.Director || "N/A" }}</p>
+      <p><strong>Writer: </strong> {{ movie.Writer }}</p>
+      <p><strong>Actors: </strong> {{ movie.Actors }}</p>
+      <p><strong>Plot: </strong> {{ movie.Plot }}</p>
+      <p><strong>Language: </strong> {{ movie.Language }}</p>
+      <p><strong>Country: </strong> {{ movie.Country }}</p>
+      <p><strong>Awards: </strong> {{ movie.Awards }}</p>
+
+      <p><strong>Total Seasons: </strong> {{ movie.totalSeasons }}</p>
+
+      <p>
+        <strong>Rated: </strong>
+        <p-badge value="{{ movie.Rated }}" severity="info"></p-badge>
+      </p>
+
+      <p [style]="{ display: 'inline-flex' }">
+        <strong>IMDb Rating: </strong> {{ movie.imdbRating }} / 10
+        <p-rating
+          [(ngModel)]="movie.imdbRating"
+          [stars]="10"
+          [readonly]="true"
+          [iconOnStyle]="{ color: '#4743fb' }"
+        />
+      </p>
+    </div>
+  </div>
+</p-card>

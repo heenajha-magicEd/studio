@@ -1,0 +1,43 @@
+.movie-content {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  // flex-wrap: wrap;
+}
+
+img {
+  border-radius: 18px;
+}
+@media (max-width: 768px) {
+  .movie-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .movie-image img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .movie-details {
+    text-align: left; /* optional: keeps text aligned nicely */
+    width: 100%;
+  }
+}
+
+p-rating {
+  position: relative;
+  display: flex;
+  align-items: start;
+  gap: var(--p-rating-gap);
+  padding-left: 10px;
+}
+
+// p-card-title {
+//   font-family: "Roboto Slab";
+//   font-size: 32px;
+//   font-weight: 700;
+//   color: #0690d7;
+//   letter-spacing: 0.05rem;
+// }

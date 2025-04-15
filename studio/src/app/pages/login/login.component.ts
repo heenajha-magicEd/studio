@@ -1,0 +1,91 @@
+import { Component } from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { Router } from '@angular/router';
+import { IftaLabelModule } from 'primeng/iftalabel';
+import { InputTextModule } from 'primeng/inputtext';
+
+@Component({
+  selector: 'app-login',
+  standalone: true,
+  imports: [FormsModule, ReactiveFormsModule, InputTextModule, IftaLabelModule],
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.scss',
+})
+export class LoginComponent {
+  signUpForm: FormGroup;
+  loginForm: FormGroup;
+
+  constructor(private fb: FormBuilder, private router: Router) {
+    this.signUpForm = this.fb.group({
+      userName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+    });
+
+    this.loginForm = this.fb.group({
+      loginEmail: ['', [Validators.required, Validators.email]],
+      loginPassword: ['', [Validators.required]],
+    });
+  }
+
+  ngOnInit() {
+    this.viewSignUpForm();
+    this.viewLoginForm();
+  }
+
+  onSignUpSubmit() {
+    if (this.signUpForm.valid) {
+      const formData = this.signUpForm.value;
+      localStorage.setItem('userData', JSON.stringify(formData));
+      this.signUpForm.reset();
+    }
+  }
+
+  onLoginSubmit() {
+    if (this.loginForm.valid) {
+      const formData = this.loginForm.value;
+      const storedUserData = localStorage.getItem('userData');
+      if (storedUserData) {
+        const parsedUserData = JSON.parse(storedUserData);
+        if (
+          parsedUserData.email === formData.loginEmail &&
+          parsedUserData.password === formData.loginPassword
+        ) {
+          console.log('Login successful!');
+          this.router?.navigate(['/home']);
+          localStorage.setItem('isLoggedIn', 'true');
+        } else {
+          alert('Login failed: Invalid credentials');
+        }
+      } else {
+        alert('No user data found in local storage.');
+      }
+    }
+  }
+
+  viewSignUpForm() {
+    console.log('Want to signup');
+    const container = document.getElementById('container');
+    const signUpButton = document.getElementById('signUp');
+
+    signUpButton?.addEventListener('click', () => {
+      container?.classList.add('right-panel-active');
+    });
+  }
+
+  viewLoginForm() {
+    console.log('Want to login');
+    const container = document.getElementById('container');
+    const signInButton = document.getElementById('signIn');
+
+    signInButton?.addEventListener('click', () => {
+      container?.classList.remove('right-panel-active');
+    });
+  }
+}

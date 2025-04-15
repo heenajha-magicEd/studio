@@ -1,0 +1,28 @@
+<div class="items-center justify-center">
+  <p-card>
+    <ng-template #header>
+      <img alt="Card" [src]="post.urls.regular" width="100%" height="300px" />
+    </ng-template>
+    <!-- <ng-template #title> {{ post.description }} </ng-template> -->
+    <ng-template #subtitle>User: {{ post.user?.username }}</ng-template>
+    <ng-template #footer>
+      <p>Likes: {{ post.likes }}</p>
+      <P>Last Updated: {{ post.updated_at }}</P>
+      <div>
+        <p-button
+          label="View Profile"
+          size="small"
+          variant="outlined"
+          severity="secondary"
+        />
+        <p-button
+          icon="pi pi-heart"
+          [rounded]="true"
+          [text]="true"
+          severity="secondary"
+          [style]="{ 'margin-left': '5px' }"
+        />
+      </div>
+    </ng-template>
+  </p-card>
+</div>

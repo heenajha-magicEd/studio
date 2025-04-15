@@ -1,0 +1,78 @@
+// .search_bar {
+//   border: none !important;
+//   display: flex;
+//   flex-wrap: wrap;
+//   gap: 1rem;
+// }
+
+// p-inputgroup {
+//   flex: 1;
+//   min-width: 150px;
+// }
+
+// @media (max-width: 768px) {
+//   .search_bar {
+//     flex-direction: column;
+//     p-button {
+//       width: 100% !important;
+//     }
+//   }
+
+//   p-inputgroup {
+//     width: 100%;
+//   }
+
+//   ::ng-deep p-button {
+//     width: 100% !important;
+//     margin-left: 0 !important;
+//   }
+// }
+
+// .ng-invalid.ng-touched {
+//   border: 1px solid red;
+// }
+
+// @media (max-width: 768px) {
+//   .full-width-mobile {
+//     width: 100% !important;
+//     margin-left: 0 !important;
+//   }
+// }
+
+.search_bar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-element {
+  // flex: 1;
+  flex: 0.5;
+  min-width: 150px;
+}
+
+/* Mobile View */
+@media (max-width: 768px ) {
+  .main-div {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .form-element {
+    width: 100%;
+  }
+
+  ::ng-deep p-button,
+  .full-width-mobile {
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+}
+
+/* Red border on invalid inputs */
+.ng-invalid.ng-touched {
+  border: 1px solid red;
+}

@@ -1,0 +1,8 @@
+<app-search-bar
+  [inputsConfig]="searchInputs"
+  (search)="search($event)"
+></app-search-bar>
+<p class="sub-heading mt-2">
+  Search it. Watch it. Review it. Your next favorite movie is just a click away.
+</p>
+<app-review *ngIf="reviewsData" [movie]="reviewsData"></app-review>
