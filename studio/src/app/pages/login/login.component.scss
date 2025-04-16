@@ -227,3 +227,10 @@ input {
   height: 40px;
   width: 40px;
 }
+
+.google-signin-container {
+  position: relative; /* Changed from absolute to relative */
+  margin-top: 20px;
+  z-index: 999; /* Ensure it's in front of other elements */
+  text-align: center;
+}

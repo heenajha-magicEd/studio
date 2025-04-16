@@ -1,3 +1,4 @@
+declare var google: any;
 import { Component } from '@angular/core';
 import {
   FormBuilder,
@@ -7,13 +8,21 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ButtonModule } from 'primeng/button';
 import { IftaLabelModule } from 'primeng/iftalabel';
 import { InputTextModule } from 'primeng/inputtext';
+import { environment } from '../../../environment';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, InputTextModule, IftaLabelModule],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    InputTextModule,
+    IftaLabelModule,
+    ButtonModule,
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
@@ -37,6 +46,24 @@ export class LoginComponent {
   ngOnInit() {
     this.viewSignUpForm();
     this.viewLoginForm();
+    google.accounts.id.initialize({
+      client_id: environment.GOOGLE_CLIENT_ID,
+      callback: (response: any) => {
+        if (response.clientId !== undefined) {
+          this.userSuccessfullyLoggedIn();
+        }
+      },
+    });
+
+    google.accounts.id.renderButton(
+      document.getElementById('googleSignInBtn') as HTMLElement,
+      {
+        theme: 'filled_black',
+        size: 'large',
+        width: 350,
+        shape: 'rectangular',
+      }
+    );
   }
 
   onSignUpSubmit() {
@@ -57,9 +84,7 @@ export class LoginComponent {
           parsedUserData.email === formData.loginEmail &&
           parsedUserData.password === formData.loginPassword
         ) {
-          console.log('Login successful!');
-          this.router?.navigate(['/home']);
-          localStorage.setItem('isLoggedIn', 'true');
+          this.userSuccessfullyLoggedIn();
         } else {
           alert('Login failed: Invalid credentials');
         }
@@ -69,8 +94,13 @@ export class LoginComponent {
     }
   }
 
+  userSuccessfullyLoggedIn() {
+    console.log('Login successful!');
+    this.router?.navigate(['/home']);
+    localStorage.setItem('isLoggedIn', 'true');
+  }
+
   viewSignUpForm() {
-    console.log('Want to signup');
     const container = document.getElementById('container');
     const signUpButton = document.getElementById('signUp');
 
@@ -80,7 +110,6 @@ export class LoginComponent {
   }
 
   viewLoginForm() {
-    console.log('Want to login');
     const container = document.getElementById('container');
     const signInButton = document.getElementById('signIn');
 
@@ -88,4 +117,6 @@ export class LoginComponent {
       container?.classList.remove('right-panel-active');
     });
   }
+
+  googleSignIn() {}
 }

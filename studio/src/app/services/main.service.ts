@@ -10,9 +10,7 @@ import { environment } from '../../environment';
 export class MainService {
   SPL_URL = `https://api.unsplash.com`;
   API_URL = 'https://reqres.in';
-  // constructor(private httpClient: HttpClient) {}
-
-  private httpClient = inject(HttpClient);
+  constructor(private httpClient: HttpClient) {}
 
   public getRandomImage(): any {
     return this.httpClient

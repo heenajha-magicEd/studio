@@ -12,18 +12,26 @@ export const routes: Routes = [
         remoteEntry: 'http://localhost:4200/remoteEntry.js',
         exposedModule: './Artists',
       }).then((m) => m.ArtistsComponent),
+    canActivate: [AuthGuard],
   },
   {
     path: 'login',
+    pathMatch: 'full',
     loadComponent: () =>
       import('./pages/login/login.component').then((m) => m.LoginComponent),
   },
   {
     path: '',
+    pathMatch: 'full',
     loadComponent: () =>
-      import('./pages/home/home.component').then((m) => m.HomeComponent),
-    canActivate: [AuthGuard],
+      import('./pages/login/login.component').then((m) => m.LoginComponent),
   },
+  // {
+  //   path: '',
+  //   loadComponent: () =>
+  //     import('./pages/home/home.component').then((m) => m.HomeComponent),
+  //   canActivate: [AuthGuard],
+  // },
   {
     path: 'home',
     loadComponent: () =>

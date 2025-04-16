@@ -55,7 +55,7 @@
 }
 
 /* Mobile View */
-@media (max-width: 768px ) {
+@media (max-width: 768px) {
   .main-div {
     flex-direction: column;
     align-items: stretch;
@@ -70,9 +70,4 @@
     width: 100% !important;
     margin-left: 0 !important;
   }
-}
-
-/* Red border on invalid inputs */
-.ng-invalid.ng-touched {
-  border: 1px solid red;
 }

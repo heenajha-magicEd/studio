@@ -1,10 +1,11 @@
-<div class="items-center justify-center">
+<div class="items-center justify-centers">
   <p-card>
     <ng-template #header>
-      <img alt="Card" [src]="post.urls.regular" width="100%" height="300px" />
-    </ng-template>
-    <!-- <ng-template #title> {{ post.description }} </ng-template> -->
+      <div class="image-container">
+        <img alt="Card" [src]="post.urls.regular" /></div
+    ></ng-template>
     <ng-template #subtitle>User: {{ post.user?.username }}</ng-template>
+
     <ng-template #footer>
       <p>Likes: {{ post.likes }}</p>
       <P>Last Updated: {{ post.updated_at }}</P>

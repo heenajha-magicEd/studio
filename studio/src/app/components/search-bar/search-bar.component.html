@@ -1,36 +1,8 @@
-<!-- <form
-  (ngSubmit)="triggerSearch()"
-  #searchForm="ngForm"
-  class="search_bar card flex flex-row md:flex-row gap-2 mb-4"
-  style="text-align: center"
->
-  <p-inputgroup *ngFor="let input of inputsConfig">
-    <input
-      pInputText
-      [type]="input.type || 'text'"
-      [placeholder]="input.placeholder"
-      [(ngModel)]="formValues[input.name]"
-      [name]="input.name"
-      [required]="input.required ?? false"
-      #ctrl="ngModel"
-      [ngClass]="{ 'ng-invalid': ctrl.invalid && ctrl.touched }"
-    />
-  </p-inputgroup>
-
-  <button
-    pButton
-    type="submit"
-    icon="pi pi-search"
-    severity="contrast"
-    label="Search"
-    styleClass="ml-2 full-width-mobile"
-    [disabled]="searchForm.invalid"
-    [style]="{ width: '100%' }"
-  ></button>
-</form> -->
-
 <form (ngSubmit)="triggerSearch()" #searchForm="ngForm" class="search_bar">
-  <div class="form-element" *ngFor="let input of inputsConfig">
+  <div
+    class="form-element ng-invalid ng-touched"
+    *ngFor="let input of inputsConfig"
+  >
     <p-inputgroup>
       <input
         pInputText
@@ -45,7 +17,7 @@
     </p-inputgroup>
   </div>
 
-  <div class="form-element">
+  <div>
     <button
       pButton
       type="submit"

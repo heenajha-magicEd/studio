@@ -2,7 +2,12 @@
   [inputsConfig]="searchInputs"
   (search)="search($event)"
 ></app-search-bar>
-<p class="sub-heading mt-2">
-  Search it. Watch it. Review it. Your next favorite movie is just a click away.
-</p>
+<div>
+  <p class="empty sub-heading mt-2" *ngIf="!reviewsData">
+    Search it ✍️. Watch it 🍿. Review it 🌟.
+    <br />
+    Your next favorite movie is just a click away.
+  </p>
+</div>
+
 <app-review *ngIf="reviewsData" [movie]="reviewsData"></app-review>

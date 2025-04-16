@@ -48,7 +48,7 @@ export class HomeComponent implements OnInit {
   constructor(private api: MainService) {}
 
   ngOnInit() {
-    // this.getAllImages();
+    this.getAllImages();
   }
 
   search(event: { [key: string]: string }) {
