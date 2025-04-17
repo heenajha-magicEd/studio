@@ -5,6 +5,7 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { OverlayBadgeModule } from 'primeng/overlaybadge';
 import { RatingModule } from 'primeng/rating';
+import { DisclaimertDirective } from '../../directives/disclaimer.directive';
 
 @Component({
   selector: 'app-review',
@@ -15,6 +16,7 @@ import { RatingModule } from 'primeng/rating';
     FormsModule,
     RatingModule,
     ButtonModule,
+    DisclaimertDirective,
   ],
   templateUrl: './review.component.html',
   styleUrl: './review.component.scss',
@@ -22,13 +24,7 @@ import { RatingModule } from 'primeng/rating';
 export class ReviewComponent {
   @Input() movie: any;
 
-  ngOnInit() {
-    // console.log('review in card', this.review);
-  }
+  ngOnInit() {}
 
-  ngOnChanges(changes: SimpleChanges): void {
-    // if (changes['review'] && this.review) {
-    //   console.log('review in card', this.review);
-    // }
-  }
+  ngOnChanges(changes: SimpleChanges): void {}
 }

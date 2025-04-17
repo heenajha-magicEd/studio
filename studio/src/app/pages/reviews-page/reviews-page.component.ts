@@ -18,9 +18,7 @@ export class ReviewsPageComponent {
   ];
   constructor(private reviewsService: ReviewsService) {}
 
-  ngOnInit() {
-    // this.getReviewData('all', 2022, 'thriller');
-  }
+  ngOnInit() {}
 
   search(event: { [key: string]: string }) {
     this.reviewsService
@@ -33,6 +31,4 @@ export class ReviewsPageComponent {
         console.log(this.reviewsData);
       });
   }
-
-  // getReviewData(keyword?: string, year?: number, genre?: string) {}
 }

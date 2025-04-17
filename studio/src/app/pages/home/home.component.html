@@ -1,27 +1,38 @@
-@if(pageLoading){
-<div class="card flex flex-row justify-center">
-  <p-progress-spinner
-    ariaLabel="loading"
-    strokeWidth="2"
-    [style]="{ width: '30px', height: '30px' }"
-  />
-  Loading
-</div>
-} @else if(!pageLoading){
 <p class="logo">Studio</p>
 <p class="sub-heading">Search. Find. Be inspired.</p>
 <div class="searchbar-div card flex flex-col md:flex-row gap-4 mb-4">
   <app-search-bar
     [inputsConfig]="searchInputs"
-    (search)="search($event)"
+    (search)="searchImages($event)"
   ></app-search-bar>
+  <p *ngIf="filterStatement" class="text-align-center">
+    Showing search results for {{ filterStatement }} ✨
+  </p>
 </div>
 
-<div class="col-sm-12 mt-3">
+<div class="col-sm-12 mt-3" *ngIf="showAllPosts">
   <div class="api-grid">
-    <div *ngFor="let post of allPosts" class="box">
+    <div *ngFor="let post of allPosts$ | async" class="box">
       <app-image-card [post]="post" />
     </div>
   </div>
 </div>
-}
+<div class="col-sm-12 mt-3">
+  <div class="api-grid">
+    <div *ngFor="let post of filteredImages$ | async" class="box">
+      <app-image-card [post]="post"></app-image-card>
+    </div>
+  </div>
+</div>
+
+<div class="random-btn-div" *ngIf="showRandomBtn">
+  <p>or</p>
+  <button
+    pButton
+    icon="pi pi-star"
+    severity="success"
+    label="Get Random Image"
+    (click)="getRandomImage()"
+  ></button>
+  <app-image-card *ngIf="randomImg" [post]="randomImg" />
+</div>

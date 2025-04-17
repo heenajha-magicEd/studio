@@ -31,7 +31,8 @@ export class SearchBarComponent {
     });
   }
 
-  triggerSearch() {
+  triggerSearch(searchForm: any) {
     this.search.emit(this.formValues);
+    searchForm.resetForm();
   }
 }

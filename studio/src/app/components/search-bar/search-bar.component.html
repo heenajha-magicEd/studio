@@ -1,4 +1,8 @@
-<form (ngSubmit)="triggerSearch()" #searchForm="ngForm" class="search_bar">
+<form
+  (ngSubmit)="triggerSearch(searchForm)"
+  #searchForm="ngForm"
+  class="search_bar"
+>
   <div
     class="form-element ng-invalid ng-touched"
     *ngFor="let input of inputsConfig"

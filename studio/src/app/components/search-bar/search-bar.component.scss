@@ -1,43 +1,7 @@
-// .search_bar {
-//   border: none !important;
-//   display: flex;
-//   flex-wrap: wrap;
-//   gap: 1rem;
-// }
-
-// p-inputgroup {
-//   flex: 1;
-//   min-width: 150px;
-// }
-
-// @media (max-width: 768px) {
-//   .search_bar {
-//     flex-direction: column;
-//     p-button {
-//       width: 100% !important;
-//     }
-//   }
-
-//   p-inputgroup {
-//     width: 100%;
-//   }
-
-//   ::ng-deep p-button {
-//     width: 100% !important;
-//     margin-left: 0 !important;
-//   }
-// }
-
-// .ng-invalid.ng-touched {
-//   border: 1px solid red;
-// }
-
-// @media (max-width: 768px) {
-//   .full-width-mobile {
-//     width: 100% !important;
-//     margin-left: 0 !important;
-//   }
-// }
+:host {
+  display: flex;
+  justify-content: center;
+}
 
 .search_bar {
   display: flex;

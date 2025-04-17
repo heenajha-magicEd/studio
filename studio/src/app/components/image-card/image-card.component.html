@@ -1,29 +1,45 @@
-<div class="items-center justify-centers">
+<div class="card-container">
   <p-card>
     <ng-template #header>
       <div class="image-container">
-        <img alt="Card" [src]="post.urls.regular" /></div
-    ></ng-template>
-    <ng-template #subtitle>User: {{ post.user?.username }}</ng-template>
-
-    <ng-template #footer>
-      <p>Likes: {{ post.likes }}</p>
-      <P>Last Updated: {{ post.updated_at }}</P>
-      <div>
-        <p-button
-          label="View Profile"
-          size="small"
-          variant="outlined"
-          severity="secondary"
-        />
-        <p-button
-          icon="pi pi-heart"
-          [rounded]="true"
-          [text]="true"
-          severity="secondary"
-          [style]="{ 'margin-left': '5px' }"
-        />
+        <img alt="Card" [src]="post.urls.regular" />
       </div>
     </ng-template>
+    <ng-template #subtitle>
+      <div class="post-meta-row">
+        <p class="user-text">User: {{ post.user?.username }}</p>
+        <p class="likes-text">{{ post.likes }} ♡</p>
+      </div>
+      <p class="updated-text mt-0">
+        {{ post.updated_at | date : "medium" }}
+      </p>
+      <p-button
+        icon="pi pi-user"
+        [rounded]="true"
+        [text]="true"
+        severity="info"
+      />
+      <p-button
+        icon="pi pi-bell"
+        [rounded]="true"
+        [text]="true"
+        severity="warn"
+      />
+      <p-button
+        icon="pi pi-heart"
+        [rounded]="true"
+        [text]="true"
+        severity="help"
+      />
+      <p-button
+        icon="pi pi-times"
+        [rounded]="true"
+        [text]="true"
+        severity="danger"
+      />
+    </ng-template>
+    <!-- <ng-template #footer>
+     
+    </ng-template> -->
   </p-card>
 </div>

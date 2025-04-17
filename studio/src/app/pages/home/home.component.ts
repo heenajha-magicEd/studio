@@ -2,17 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { MainService } from '../../services/main.service';
 import { ImageCardComponent } from '../../components/image-card/image-card.component';
 import { CommonModule } from '@angular/common';
-import { PostDataElement } from '../../models/dataTypes.model';
 import { FormsModule } from '@angular/forms';
-import { InputGroup } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { MenuModule } from 'primeng/menu';
-import { MenuItem } from 'primeng/api';
-import { AuthService } from '../../services/auth.service';
-import { ProgressSpinner } from 'primeng/progressspinner';
 import { SearchBarComponent } from '../../components/search-bar/search-bar.component';
+import { map, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -27,23 +23,40 @@ import { SearchBarComponent } from '../../components/search-bar/search-bar.compo
     InputTextModule,
     ButtonModule,
     MenuModule,
-    ProgressSpinner,
     SearchBarComponent,
   ],
 })
 export class HomeComponent implements OnInit {
+  allPosts$: Observable<any> = of([]);
+  filteredImages$: Observable<any[]> = of([]);
+  showAllPosts: boolean = true;
+  randomImg: any;
   data: any;
-  allPosts: any;
   users: any;
-  pageLoading: boolean = false; //set this up properly
+  showRandomBtn: boolean = false;
   searchInputs = [
     {
       name: 'keyword',
-      placeholder: 'keyword...',
+      placeholder: 'search by keyword',
       type: 'text',
       required: true,
     },
+    {
+      name: 'color',
+      placeholder: 'search by color',
+      type: 'text',
+      required: false,
+    },
+    {
+      name: 'perPage',
+      placeholder: 'number of images',
+      type: 'number',
+      required: false,
+    },
   ];
+  filteredImages: any;
+  filterParams = { query: '', color: '', perPage: 0 };
+  filterStatement: string = '';
 
   constructor(private api: MainService) {}
 
@@ -51,25 +64,48 @@ export class HomeComponent implements OnInit {
     this.getAllImages();
   }
 
-  search(event: { [key: string]: string }) {
-    console.log('Search triggered with:', event);
-    // Do something with: event.keyword, event.year, etc.
+  getAllImages() {
+    this.allPosts$ = this.api.getAllImages();
+    this.allPosts$.subscribe((res: any) => {
+      this.showRandomBtn = true;
+      console.log('main', res);
+    });
   }
 
-  getAllImages() {
-    this.api.getAllImages().subscribe((res: any) => {
-      this.allPosts = res;
-      setTimeout(() => {
-        this.pageLoading = false;
-      }, 2000);
+  searchImages(event: { [key: string]: string }) {
+    this.filterParams.query = event['keyword'];
+    this.filterParams.color = event['color'];
+    this.filterParams.perPage = event['perPage']
+      ? Number(event['perPage'])
+      : 20;
 
-      console.log(this.allPosts);
-    });
+    this.filteredImages$ = this.api
+      .filterImages(
+        this.filterParams.query,
+        this.filterParams.perPage,
+        this.filterParams.color
+      )
+      .pipe(
+        map((res: any) => {
+          this.showAllPosts = false;
+          this.filterStatement = this.getSearchStatement();
+          return res.results;
+        })
+      );
+  }
+
+  // getSearchStatement() {
+  //   return `${this.filterParams.query}`;
+  // }
+  getSearchStatement() {
+    return this.filterParams.color
+      ? `${this.filterParams.query}, ${this.filterParams.color}`
+      : `${this.filterParams.query}`;
   }
 
   getRandomImage() {
     this.api.getRandomImage().subscribe((res: any) => {
-      this.data = res;
+      this.randomImg = res;
       console.log(this.data);
     });
   }

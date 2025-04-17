@@ -67,3 +67,15 @@ p-button {
   grid-gap: 24px;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
+
+.random-btn-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  flex-direction: column;
+  button {
+    width: 280px;
+    margin-bottom: 30px;
+  }
+}

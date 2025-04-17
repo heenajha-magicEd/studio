@@ -21,9 +21,32 @@ export class MainService {
   public getAllImages(): any {
     return this.httpClient
       .get(
-        `${this.SPL_URL}/photos??page=1&per_page=100&client_id=${environment.ACCESS_KEY}
+        `${this.SPL_URL}/photos?page=1&color=red&client_id=${environment.ACCESS_KEY}
         `
       )
+      .pipe(catchError(() => of('Error fetching image')));
+  }
+
+  public filterImages(
+    query: string,
+    perPage?: number,
+    color?: string // Color is optional
+  ): any {
+    // Base URL without color
+    let url = `${this.SPL_URL}/search/photos?page=1&query=${query}&per_page=${
+      perPage ? perPage : 20
+    }&client_id=${environment.ACCESS_KEY}`;
+
+    console.log(url);
+
+    // If color is provided, append it to the URL
+    if (color) {
+      url += `&color=${color}`;
+    }
+
+    // Make the HTTP request
+    return this.httpClient
+      .get(url)
       .pipe(catchError(() => of('Error fetching image')));
   }
 
