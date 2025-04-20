@@ -2,7 +2,7 @@ module.exports = function (config) {
   config.set({
     basePath: "",
     frameworks: ["jasmine", "browserify"],
-    files: ["test-api/*.js"],
+    files: ["*home.component.spec.ts"],
     exclude: [],
     preprocessors: {
       "test/*.js": ["browserify"],

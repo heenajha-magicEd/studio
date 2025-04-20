@@ -94,9 +94,6 @@ export class HomeComponent implements OnInit {
       );
   }
 
-  // getSearchStatement() {
-  //   return `${this.filterParams.query}`;
-  // }
   getSearchStatement() {
     return this.filterParams.color
       ? `${this.filterParams.query}, ${this.filterParams.color}`
