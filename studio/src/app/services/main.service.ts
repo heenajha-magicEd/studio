@@ -1,58 +1,58 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { map, tap, catchError } from 'rxjs/operators';
-import { environment } from '../../environment';
+import { catchError } from 'rxjs/operators';
+import { environment as env } from '../../environment';
+import { UnsplashImage, UnsplashSearchResponse } from '@models/dataTypes.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MainService {
-  SPL_URL = `https://api.unsplash.com`;
-  API_URL = 'https://reqres.in';
   constructor(private httpClient: HttpClient) {}
 
-  public getRandomImage(): any {
+  // Get a list of all images from unsplash
+  public getAllImages(): Observable<UnsplashImage[]> {
     return this.httpClient
-      .get(`${this.SPL_URL}/photos/random?client_id=${environment.ACCESS_KEY}`)
-      .pipe(catchError(() => of('Error fetching image')));
-  }
-
-  public getAllImages(): any {
-    return this.httpClient
-      .get(
-        `${this.SPL_URL}/photos?page=1&color=red&client_id=${environment.ACCESS_KEY}
-        `
+      .get<UnsplashImage[]>(
+        `${env.UNSPLASH_API_URL}/photos?page=1&client_id=${env.ACCESS_KEY}`
       )
-      .pipe(catchError(() => of('Error fetching image')));
+      .pipe(
+        catchError((error) => {
+          console.error('Error fetching image', error);
+          return of([]);
+        })
+      );
   }
 
+  // Apply seach filters for images from unsplash
   public filterImages(
     query: string,
-    perPage?: number,
-    color?: string // Color is optional
-  ): any {
-    // Base URL without color
-    let url = `${this.SPL_URL}/search/photos?page=1&query=${query}&per_page=${
-      perPage ? perPage : 20
-    }&client_id=${environment.ACCESS_KEY}`;
+    perPage: number = 20,
+    color?: string
+  ): Observable<UnsplashSearchResponse> {
+    let url = `${env.UNSPLASH_API_URL}/search/photos?page=1&query=${query}&per_page=${perPage}&client_id=${env.ACCESS_KEY}`;
 
-    console.log(url);
-
-    // If color is provided, append it to the URL
     if (color) {
       url += `&color=${color}`;
     }
 
-    // Make the HTTP request
-    return this.httpClient
-      .get(url)
-      .pipe(catchError(() => of('Error fetching image')));
+    return this.httpClient.get<UnsplashSearchResponse>(url).pipe(
+      catchError((error) => {
+        console.error('Error fetching filtered images:', error);
+        return of({ results: [], total: 0, total_pages: 0 });
+      })
+    );
   }
 
-  // public getUsers(url: string): Observable<any> {
-  //   return this.httpClient
-  //     .get(this.API_URL + '/api/' + url)
-  //     .pipe(map((res: any) => res));
-  // }
+  // Get a random image from Unsplash
+  public getRandomImage(): Observable<UnsplashImage[]> {
+    const url = `${env.UNSPLASH_API_URL}/photos/random?client_id=${env.ACCESS_KEY}`;
+    return this.httpClient.get<UnsplashImage[]>(url).pipe(
+      catchError(() => {
+        console.error('Error fetching randon image');
+        return of([]);
+      })
+    );
+  }
 }

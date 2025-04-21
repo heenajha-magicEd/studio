@@ -3,7 +3,7 @@ import { HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-// Interceptor function to show alerts based on response status
+// Interceptor function to console response status (success or error)
 export const responseAlertInterceptor: HttpInterceptorFn = (
   req: any,
   next: any
@@ -11,13 +11,11 @@ export const responseAlertInterceptor: HttpInterceptorFn = (
   return next(req).pipe(
     tap({
       next: (event: HttpEvent<any>) => {
-        // If the response is successful (status code 200)
         if (event instanceof HttpResponse && event.status === 200) {
           console.log('API Call Successful!');
         }
       },
       error: (error: any) => {
-        // If there's an error response
         console.log(`API Call Failed: ${error.status} - ${error.message}`);
       },
     })

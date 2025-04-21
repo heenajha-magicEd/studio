@@ -10,11 +10,10 @@ export class AuthGuard implements CanActivate {
 
   canActivate(): Observable<boolean> | Promise<boolean> | boolean {
     const isLoggedIn = localStorage.getItem('isLoggedIn');
-    // if (isLoggedIn === 'true' && userType === 'admin') {
     if (isLoggedIn === 'true') {
       return true;
     } else {
-      this.router.navigate(['/login']); // Redirect to login page if not logged in
+      this.router.navigate(['/login']);
       return false;
     }
   }

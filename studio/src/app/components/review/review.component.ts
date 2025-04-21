@@ -23,8 +23,4 @@ import { DisclaimertDirective } from '../../directives/disclaimer.directive';
 })
 export class ReviewComponent {
   @Input() movie: any;
-
-  ngOnInit() {}
-
-  ngOnChanges(changes: SimpleChanges): void {}
 }

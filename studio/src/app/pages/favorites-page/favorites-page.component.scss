@@ -1,0 +1,44 @@
+:host {
+  width: 100vw;
+}
+
+.api-grid {
+  display: grid;
+  grid-auto-rows: 1fr;
+  grid-gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.box {
+  min-width: 300px;
+  height: 100%;
+  margin: 1px;
+}
+
+.logo {
+  margin: 0;
+  font-weight: 700;
+  justify-content: center;
+  display: flex;
+  font-size: 24px;
+  letter-spacing: 2px;
+}
+
+.sub-heading {
+  font-size: 14px;
+  font-weight: 400;
+  color: #666;
+  margin-top: 0;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.wrapper {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.noFavs {
+  text-align: center;
+  padding: 150px 0px;
+}

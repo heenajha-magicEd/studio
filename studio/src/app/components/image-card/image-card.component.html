@@ -37,9 +37,17 @@
         [text]="true"
         severity="danger"
       />
+      <p-button
+        *ngIf="showAddToFav"
+        [label]="favBtnLabel"
+        variant="outlined"
+        severity="secondary"
+        [icon]="favBtnIcon"
+        size="small"
+        iconPos="right"
+        [style]="{ width: '100%' }"
+        (click)="addToFavorites()"
+      />
     </ng-template>
-    <!-- <ng-template #footer>
-     
-    </ng-template> -->
   </p-card>
 </div>

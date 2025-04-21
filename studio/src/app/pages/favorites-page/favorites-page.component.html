@@ -1,0 +1,32 @@
+<!-- <h2>Your Favorite Images</h2>
+
+<div *ngIf="(favorites$ | async)?.length; else noFavs">
+  <div class="api-grid">
+    <div *ngFor="let fav of favorites$ | async" class="box">
+      <app-image-card [post]="fav" />
+    </div>
+  </div>
+</div>
+
+<ng-template #noFavs>
+  <p>No favorites yet. Go explore some images and add them! 🌈</p>
+</ng-template> -->
+
+<p class="logo">Favorites</p>
+<p class="sub-heading">Your favorite picks, all in one place 💖</p>
+
+<div class="wrapper">
+  <div *ngIf="(favorites$ | async)?.length; else noFavs">
+    <div class="api-grid">
+      <div *ngFor="let fav of favorites$ | async" class="box">
+        <app-image-card [post]="fav" />
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noFavs>
+    <p class="text-align-center mt-4 noFavs">
+      No favorites yet. Go explore some images and add them! 🌈
+    </p>
+  </ng-template>
+</div>

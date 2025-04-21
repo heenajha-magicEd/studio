@@ -5,22 +5,28 @@
     [inputsConfig]="searchInputs"
     (search)="searchImages($event)"
   ></app-search-bar>
-  <p *ngIf="filterStatement" class="text-align-center">
-    Showing search results for {{ filterStatement }} ✨
+  <p *ngIf="filterStatement && !errorStatement" class="text-align-center">
+    Showing search results for {{ filterStatement }} ✨ {{ errorStatement }}
+  </p>
+  <p *ngIf="errorStatement" class="text-align-center">
+    {{ errorStatement }} 👽
   </p>
 </div>
 
 <div class="col-sm-12 mt-3" *ngIf="showAllPosts">
   <div class="api-grid">
     <div *ngFor="let post of allPosts$ | async" class="box">
-      <app-image-card [post]="post" />
+      <app-image-card [post]="post" (addToFav)="addToFavorites(post)" />
     </div>
   </div>
 </div>
 <div class="col-sm-12 mt-3">
   <div class="api-grid">
     <div *ngFor="let post of filteredImages$ | async" class="box">
-      <app-image-card [post]="post"></app-image-card>
+      <app-image-card
+        [post]="post"
+        (addToFav)="addToFavorites(post)"
+      ></app-image-card>
     </div>
   </div>
 </div>
@@ -34,5 +40,5 @@
     label="Get Random Image"
     (click)="getRandomImage()"
   ></button>
-  <app-image-card *ngIf="randomImg" [post]="randomImg" />
+  <app-image-card *ngIf="randomImg" [post]="randomImg" [showAddToFav]="false" />
 </div>

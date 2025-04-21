@@ -9,6 +9,10 @@ import { ButtonModule } from 'primeng/button';
 import { MenuModule } from 'primeng/menu';
 import { SearchBarComponent } from '../../components/search-bar/search-bar.component';
 import { map, Observable, of } from 'rxjs';
+import { FavoriteImage } from '@models/dataTypes.model';
+import { addToFavorites } from 'src/app/store/favorites/favorites.actions';
+import { Store } from '@ngrx/store';
+import { selectAllFavorites } from 'src/app/store/favorites/favorites.selector';
 
 @Component({
   selector: 'app-home',
@@ -57,19 +61,29 @@ export class HomeComponent implements OnInit {
   filteredImages: any;
   filterParams = { query: '', color: '', perPage: 0 };
   filterStatement: string = '';
+  errorStatement: string = '';
 
-  constructor(private api: MainService) {}
+  constructor(private api: MainService, private store: Store) {}
 
   ngOnInit() {
     this.getAllImages();
+    console.log(this.errorStatement);
   }
 
   getAllImages() {
     this.allPosts$ = this.api.getAllImages();
-    this.allPosts$.subscribe((res: any) => {
-      this.showRandomBtn = true;
-      console.log('main', res);
+    this.allPosts$.subscribe({
+      next: (res: any) => {
+        this.showRandomBtn = true;
+      },
+      error: (err) => {
+        console.error(err);
+      },
     });
+  }
+
+  showErrorStatement() {
+    this.errorStatement = 'No images found for ' + this.getSearchStatement();
   }
 
   searchImages(event: { [key: string]: string }) {
@@ -88,7 +102,14 @@ export class HomeComponent implements OnInit {
       .pipe(
         map((res: any) => {
           this.showAllPosts = false;
-          this.filterStatement = this.getSearchStatement();
+          if (res?.results?.length > 0) {
+            this.filterStatement = this.getSearchStatement();
+            this.errorStatement = '';
+          } else {
+            this.filterStatement = '';
+            this.errorStatement =
+              'No images found for ' + this.getSearchStatement();
+          }
           return res.results;
         })
       );
@@ -107,9 +128,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  // getUsers() {
-  //   this.api.getUsers('users?page=1').subscribe((res: any) => {
-  //     this.users = res;
-  //   });
-  // }
+  addToFavorites(image: FavoriteImage) {
+    this.store.dispatch(addToFavorites({ image }));
+  }
 }

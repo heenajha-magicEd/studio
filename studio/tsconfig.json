@@ -1,6 +1,8 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": "./", // This tells TypeScript where the base directory is for your project
+
     "outDir": "./dist/out-tsc",
     "strict": true,
     "noImplicitOverride": true,
@@ -16,7 +18,8 @@
     "target": "ES2022",
     "module": "ES2022",
     "paths": {
-      "profiles/*": ["http://localhost:4200/remoteEntry.js"]
+      "profiles/*": ["http://localhost:4200/remoteEntry.js"],
+      "@models/*": ["src/app/models/*"]
     }
   },
   "angularCompilerOptions": {

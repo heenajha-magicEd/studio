@@ -7,6 +7,8 @@ import { routes } from './app.routes';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { responseAlertInterceptor } from './interceptors/response.interceptor';
+import { provideStore } from '@ngrx/store';
+import { favoritesReducer } from './store/favorites/favorites.reduce';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,6 +18,7 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideAnimationsAsync(),
+    provideStore({ favorites: favoritesReducer }),
     providePrimeNG({
       theme: {
         preset: Material,
