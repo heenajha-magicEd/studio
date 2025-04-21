@@ -8,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'profiles';
+
+  // public getUsers(url: string): Observable<any> {
+  //   return this.httpClient
+  //     .get(this.API_URL + '/api/' + url)
+  //     .pipe(map((res: any) => res));
+  // }
 }
