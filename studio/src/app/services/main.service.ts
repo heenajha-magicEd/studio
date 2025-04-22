@@ -47,7 +47,7 @@ export class MainService {
 
   // Get a random image from Unsplash
   public getRandomImage(): Observable<UnsplashImage[]> {
-    const url = `${env.UNSPLASH_API_URL}/photos/random?client_id=${env.ACCESS_KEY}`;
+    const url = `${env.UNSPLASH_API_URL}/photos/random?orientation=squarish&client_id=${env.ACCESS_KEY}`;
     return this.httpClient.get<UnsplashImage[]>(url).pipe(
       catchError(() => {
         console.error('Error fetching randon image');

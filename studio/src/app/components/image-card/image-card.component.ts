@@ -1,11 +1,11 @@
-import { DatePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 
 @Component({
   selector: 'app-image-card',
-  imports: [CardModule, ButtonModule, DatePipe],
+  imports: [CardModule, ButtonModule, DatePipe, CommonModule],
   standalone: true,
   templateUrl: './image-card.component.html',
   styleUrl: './image-card.component.scss',
@@ -17,6 +17,10 @@ export class ImageCardComponent {
   @Input() showAddToFav: boolean = true;
   favBtnLabel: string = 'Add to favorites';
   favBtnIcon: string = 'pi pi-arrow-down';
+
+  ngOnInit() {
+    console.log('showAddToFav:', this.showAddToFav);
+  }
 
   addToFavorites() {
     this.addToFav.emit(this.post);

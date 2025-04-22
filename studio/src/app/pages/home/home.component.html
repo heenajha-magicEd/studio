@@ -16,7 +16,11 @@
 <div class="col-sm-12 mt-3" *ngIf="showAllPosts">
   <div class="api-grid">
     <div *ngFor="let post of allPosts$ | async" class="box">
-      <app-image-card [post]="post" (addToFav)="addToFavorites(post)" />
+      <app-image-card
+        [post]="post"
+        (addToFav)="addToFavorites(post)"
+        [showAddToFav]="true"
+      />
     </div>
   </div>
 </div>
@@ -25,6 +29,7 @@
     <div *ngFor="let post of filteredImages$ | async" class="box">
       <app-image-card
         [post]="post"
+        [showAddToFav]="true"
         (addToFav)="addToFavorites(post)"
       ></app-image-card>
     </div>

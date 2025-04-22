@@ -67,9 +67,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.getAllImages();
-    console.log(this.errorStatement);
   }
-
   getAllImages() {
     this.allPosts$ = this.api.getAllImages();
     this.allPosts$.subscribe({
@@ -124,7 +122,6 @@ export class HomeComponent implements OnInit {
   getRandomImage() {
     this.api.getRandomImage().subscribe((res: any) => {
       this.randomImg = res;
-      console.log(this.data);
     });
   }
 
