@@ -15,7 +15,7 @@ export class MainService {
   public getAllImages(): Observable<UnsplashImage[]> {
     return this.httpClient
       .get<UnsplashImage[]>(
-        `${env.UNSPLASH_API_URL}/photos?page=1&client_id=${env.ACCESS_KEY}`
+        `${env.UNSPLASH_API_URL}/photos?page=1&per_page=15&client_id=${env.ACCESS_KEY}`
       )
       .pipe(
         catchError((error) => {
@@ -28,7 +28,7 @@ export class MainService {
   // Apply seach filters for images from unsplash
   public filterImages(
     query: string,
-    perPage: number = 20,
+    perPage: number = 30,
     color?: string
   ): Observable<UnsplashSearchResponse> {
     let url = `${env.UNSPLASH_API_URL}/search/photos?page=1&query=${query}&per_page=${perPage}&client_id=${env.ACCESS_KEY}`;

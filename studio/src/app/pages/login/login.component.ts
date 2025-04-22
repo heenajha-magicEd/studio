@@ -46,6 +46,10 @@ export class LoginComponent {
   ngOnInit() {
     this.viewSignUpForm();
     this.viewLoginForm();
+    this.loadGoogleBtn();
+  }
+
+  loadGoogleBtn() {
     google.accounts.id.initialize({
       client_id: environment.GOOGLE_CLIENT_ID,
       callback: (response: any) => {
@@ -95,7 +99,6 @@ export class LoginComponent {
   }
 
   userSuccessfullyLoggedIn() {
-    console.log('Login successful!');
     this.router?.navigate(['/home']);
     localStorage.setItem('isLoggedIn', 'true');
   }
@@ -117,6 +120,4 @@ export class LoginComponent {
       container?.classList.remove('right-panel-active');
     });
   }
-
-  googleSignIn() {}
 }

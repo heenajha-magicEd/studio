@@ -37,31 +37,6 @@ export class NavbarComponent implements OnInit {
 
   constructor(private auth: AuthService, private store: Store) {}
 
-  // ngOnInit() {
-  //   this.items = [
-  //     {
-  //       label: 'Home',
-  //       icon: 'pi pi-home',
-  //       routerLink: '/home',
-  //     },
-  //     {
-  //       label: 'Artists',
-  //       icon: 'pi pi-home',
-  //       routerLink: '/artists',
-  //     },
-  //     {
-  //       label: 'favorites',
-  //       icon: 'pi pi-home',
-  //       routerLink: '/favorites',
-  //     },
-  //     {
-  //       label: 'Reviews',
-  //       icon: 'pi pi-home',
-  //       routerLink: '/reviews',
-  //     },
-  //   ];
-  // }
-
   ngOnInit() {
     // Listen to changes in favorites count and build the menu
     this.store

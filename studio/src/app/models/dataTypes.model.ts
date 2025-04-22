@@ -53,15 +53,9 @@ export interface UnsplashSearchResponse {
   results: UnsplashImage[];
 }
 
-// export interface FavoriteItem {
-//   id: string;
-//   title: string;
-//   thumbnailUrl: string;
-// }
-
 export interface FavoriteImage {
   id: string;
   url: string;
   description: string;
-  [key: string]: any; // Allow other image properties
+  [key: string]: any;
 }

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
-import { OverlayBadgeModule } from 'primeng/overlaybadge';
 import { AuthService } from '../../../services/auth.service';
 
 @Component({
@@ -11,7 +10,7 @@ import { AuthService } from '../../../services/auth.service';
   styleUrl: './profile-section.component.scss',
 })
 export class ProfileSectionComponent {
-  currentUser: any = null; //Setup porperly
+  currentUser: any = null;
 
   constructor(private auth: AuthService) {}
 

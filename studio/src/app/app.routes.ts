@@ -1,8 +1,6 @@
 import { Routes } from '@angular/router';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { AuthGuard } from './gaurds/auth.guard';
-import { loadRemoteModule } from '@angular-architects/module-federation';
-import { ReviewsPageComponent } from './pages/reviews-page/reviews-page.component';
 
 export const routes: Routes = [
   {

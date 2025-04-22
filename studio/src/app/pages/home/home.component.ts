@@ -12,7 +12,6 @@ import { map, Observable, of } from 'rxjs';
 import { FavoriteImage } from '@models/dataTypes.model';
 import { addToFavorites } from 'src/app/store/favorites/favorites.actions';
 import { Store } from '@ngrx/store';
-import { selectAllFavorites } from 'src/app/store/favorites/favorites.selector';
 
 @Component({
   selector: 'app-home',

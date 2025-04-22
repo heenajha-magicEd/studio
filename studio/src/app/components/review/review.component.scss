@@ -21,7 +21,7 @@ img {
   }
 
   .movie-details {
-    text-align: left; /* optional: keeps text aligned nicely */
+    text-align: left;
     width: 100%;
   }
 }
@@ -33,11 +33,3 @@ p-rating {
   gap: var(--p-rating-gap);
   padding-left: 10px;
 }
-
-// p-card-title {
-//   font-family: "Roboto Slab";
-//   font-size: 32px;
-//   font-weight: 700;
-//   color: #0690d7;
-//   letter-spacing: 0.05rem;
-// }
