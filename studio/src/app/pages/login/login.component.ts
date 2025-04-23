@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { IftaLabelModule } from 'primeng/iftalabel';
 import { InputTextModule } from 'primeng/inputtext';
-import { environment } from '../../../environment';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -30,7 +30,11 @@ export class LoginComponent {
   signUpForm: FormGroup;
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private auth: AuthService
+  ) {
     this.signUpForm = this.fb.group({
       userName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -50,25 +54,7 @@ export class LoginComponent {
   }
 
   loadGoogleBtn() {
-    google.accounts.id.initialize({
-      client_id: environment.GOOGLE_CLIENT_ID,
-      callback: (response: any) => {
-        if (response.clientId !== undefined) {
-          console.log(response);
-          this.userSuccessfullyLoggedIn();
-        }
-      },
-    });
-
-    google.accounts.id.renderButton(
-      document.getElementById('googleSignInBtn') as HTMLElement,
-      {
-        theme: 'filled_black',
-        size: 'large',
-        width: 350,
-        shape: 'rectangular',
-      }
-    );
+    this.auth.initGoogleLogin();
   }
 
   onSignUpSubmit() {
