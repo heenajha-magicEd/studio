@@ -54,6 +54,7 @@ export class LoginComponent {
       client_id: environment.GOOGLE_CLIENT_ID,
       callback: (response: any) => {
         if (response.clientId !== undefined) {
+          console.log(response);
           this.userSuccessfullyLoggedIn();
         }
       },

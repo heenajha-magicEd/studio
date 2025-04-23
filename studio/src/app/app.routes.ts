@@ -14,6 +14,7 @@ export const routes: Routes = [
   {
     path: 'login',
     pathMatch: 'full',
+    canActivate: [AuthGuard],
     loadComponent: () =>
       import('./pages/login/login.component').then((m) => m.LoginComponent),
   },

@@ -35,7 +35,6 @@ export class ArtistsComponent {
   getRandomImage() {
     this.api.getRandomImage().subscribe((res: any) => {
       this.randomImg = res;
-      console.log(this.randomImg);
     });
   }
 }

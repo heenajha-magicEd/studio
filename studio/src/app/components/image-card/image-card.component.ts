@@ -15,12 +15,20 @@ export class ImageCardComponent {
   @Output() addToFav = new EventEmitter();
   @Input() favorites: any[] = [];
   @Input() showAddToFav: boolean = true;
-  favBtnLabel: string = 'Add to favorites';
-  favBtnIcon: string = 'pi pi-arrow-down';
 
-  ngOnInit() {
-    console.log('showAddToFav:', this.showAddToFav);
-  }
+  favBtnLabel: string = 'Add to favorites';
+  favBtnIcon: string = 'pi pi-heart';
+  favBtnDisable = false;
+  favBtnSeverity:
+    | 'success'
+    | 'info'
+    | 'warn'
+    | 'danger'
+    | 'help'
+    | 'primary'
+    | 'secondary'
+    | 'contrast'
+    | null = 'secondary';
 
   addToFavorites() {
     this.addToFav.emit(this.post);
@@ -28,8 +36,10 @@ export class ImageCardComponent {
   }
 
   updateButtonState() {
-    this.favBtnLabel = 'Added to favorites';
-    this.favBtnIcon = 'pi pi-heart';
+    this.favBtnLabel = 'Added to Favorites';
+    this.favBtnIcon = 'pi pi-check';
+    this.favBtnSeverity = 'success';
+    this.favBtnDisable = true;
   }
 
   isFavorite(): boolean {

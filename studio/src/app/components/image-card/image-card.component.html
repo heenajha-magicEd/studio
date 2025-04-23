@@ -7,43 +7,21 @@
     </ng-template>
     <ng-template #subtitle>
       <div class="post-meta-row">
-        <p class="user-text">User: {{ post.user?.username }}</p>
+        <p class="user-text">{{ post.user?.username }}</p>
         <p class="likes-text">{{ post.likes }} ♡</p>
       </div>
       <p class="updated-text mt-0">
         {{ post.updated_at | date : "medium" }}
       </p>
       <p-button
-        icon="pi pi-user"
-        [rounded]="true"
-        [text]="true"
-        severity="info"
-      />
-      <p-button
-        icon="pi pi-bell"
-        [rounded]="true"
-        [text]="true"
-        severity="warn"
-      />
-      <p-button
-        icon="pi pi-heart"
-        [rounded]="true"
-        [text]="true"
-        severity="help"
-      />
-      <p-button
-        icon="pi pi-times"
-        [rounded]="true"
-        [text]="true"
-        severity="danger"
-      />
-      <p-button
         *ngIf="showAddToFav"
+        [raised]="true"
         [label]="favBtnLabel"
         variant="outlined"
-        severity="secondary"
+        [severity]="favBtnSeverity"
         [icon]="favBtnIcon"
         size="small"
+        [disabled]="favBtnDisable"
         iconPos="right"
         [style]="{ width: '100%' }"
         (click)="addToFavorites()"
